@@ -19,6 +19,7 @@ Module de contrôle manuel des accès projets :
     'depends': ['base', 'project'],
     'data': [
         'security/ir.model.access.csv',
+        'security/ged_security.xml',
         'views/project_views.xml',
         'data/access_levels_data.xml',
     ],
