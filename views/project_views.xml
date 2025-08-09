@@ -11,46 +11,20 @@
                 <notebook>
                     <page string="🎛️ Contrôles GED" name="ged_controls">
                         <group>
-                            <group string="📋 Informations Département">
-                                <field name="x_department" readonly="1"/>
-                                <field name="x_cliq_channel" readonly="1"/>
-                                <field name="x_workdrive_folder" readonly="1"/>
-                            </group>
-                            <group string="🔒 Contrôles d'Accès">
-                                <field name="x_manual_cliq_access"/>
-                                <field name="x_manual_workdrive_access"/>
-                                <field name="x_access_level"/>
-                                <field name="x_authorized_count" readonly="1"/>
+                            <group string="📋 Configuration GED">
+                                <field name="x_department"/>
+                                <field name="x_cliq_channel" placeholder="Canal Cliq (ex: #projet-innovation)"/>
+                                <field name="x_workdrive_folder" placeholder="Dossier WorkDrive (ex: /Innovation/2025)"/>
                             </group>
                         </group>
                         
-                        <group string="👥 Utilisateurs Autorisés">
-                            <field name="x_authorized_users" 
-                                   placeholder="user1@hurimoney.com,user2@hurimoney.com,user3@hurimoney.com"
-                                   nolabel="1"/>
-                            <div class="alert alert-info" role="alert">
-                                <strong>💡 Instructions:</strong><br/>
-                                • Séparer les emails par des virgules<br/>
-                                • Cocher les accès souhaités (Cliq et/ou WorkDrive)<br/>
-                                • Choisir le niveau d'accès<br/>
-                                • Cliquer "Appliquer Permissions" pour activer
-                            </div>
-                        </group>
-                        
-                        <div class="oe_button_box" name="button_box">
-                            <button name="action_apply_permissions" 
-                                    type="object" 
-                                    class="btn btn-primary"
-                                    invisible="x_authorized_users == False">
-                                <i class="fa fa-check"/> Appliquer Permissions
-                            </button>
-                            <button name="action_revoke_permissions" 
-                                    type="object" 
-                                    class="btn btn-warning"
-                                    invisible="x_authorized_users == False"
-                                    confirm="Êtes-vous sûr de vouloir révoquer toutes les permissions ?">
-                                <i class="fa fa-times"/> Révoquer Permissions  
-                            </button>
+                        <div class="alert alert-info" role="alert">
+                            <strong>💡 Gestion des accès:</strong><br/>
+                            Les permissions GED se configurent dans <b>Paramètres → Utilisateurs → Utilisateurs</b><br/>
+                            Section <b>"GED Contrôles"</b> pour chaque utilisateur :<br/>
+                            • GED User : Accès lecture seule<br/>
+                            • GED Manager : Gestion complète<br/>
+                            • GED Innovation/Expansion/Gouvernance : Accès par département
                         </div>
                     </page>
                 </notebook>
@@ -66,9 +40,8 @@
         <field name="arch" type="xml">
             <xpath expr="//list" position="inside">
                 <field name="x_department"/>
-                <field name="x_authorized_count"/>
-                <field name="x_manual_cliq_access" widget="boolean_toggle"/>
-                <field name="x_manual_workdrive_access" widget="boolean_toggle"/>
+                <field name="x_cliq_channel"/>
+                <field name="x_workdrive_folder"/>
             </xpath>
         </field>
     </record>
